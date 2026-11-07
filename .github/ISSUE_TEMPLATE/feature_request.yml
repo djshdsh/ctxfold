@@ -1,0 +1,45 @@
+name: 想要的功能
+description: 新的层、新的规则、新的界面，或者「这里应该能改」
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 现在卡在哪
+      description: 说场景，不用说方案。你当时想干什么、被什么挡住了。
+      placeholder: |
+        我在 vibe coding，同一个会话里先写后端再改前端。
+        routing 把它当成一个族，注入的是同一套层，前端那半段用不上。
+    validations:
+      required: true
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: 你觉得应该怎么解决
+      description: 有想法就写，没有就留空。这里只是参考，不会被当成规格。
+    validations:
+      required: false
+
+  - type: dropdown
+    id: where
+    attributes:
+      label: 属于哪一块
+      options:
+        - 提示词层（内容 / 裁剪）
+        - 任务族判定
+        - 规则集
+        - 扩展运行时
+        - 桌面外壳界面
+        - 网页控制台
+        - 其它
+    validations:
+      required: true
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: 你现在怎么绕过
+      description: 如果已经在用土办法，写出来——它可能比想出来的方案更接近正解。
+    validations:
+      required: false

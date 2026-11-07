@@ -1,0 +1,49 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 安装依赖
+        run: npm install --no-audit --no-fund
+
+      - name: 单元测试
+        run: npm test
+
+      - name: 构建命令行后端（Node SEA）
+        run: node scripts/build-exe.mjs
+
+      - name: 构建桌面外壳（WinForms + csc）
+        run: node scripts/build-shell.mjs
+
+      - name: 组装发布包
+        shell: pwsh
+        run: |
+          $stage = "stage/ctxfold"
+          New-Item -ItemType Directory -Path $stage -Force | Out-Null
+          Copy-Item dist/ctxfold-app.exe $stage
+          Copy-Item README.md, LICENSE $stage
+          Compress-Archive -Path $stage -DestinationPath "ctxfold-${{ github.ref_name }}-win64.zip" -CompressionLevel Optimal
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/ctxfold-app.exe
+            dist/ctxfold.exe
+            ctxfold-${{ github.ref_name }}-win64.zip
+          generate_release_notes: true

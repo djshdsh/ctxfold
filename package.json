@@ -1,0 +1,77 @@
+{
+  "name": "ctxfold",
+  "version": "1.3.0",
+  "description": "Pi Agent 的分层提示词控制台：按任务裁剪注入、规则集、技能包与桌面外壳，零运行时依赖。",
+  "type": "module",
+  "bin": {
+    "ctxfold": "bin/ctxfold.js"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./layers": "./lib/layers.js",
+    "./router": "./lib/router.js",
+    "./bridge": "./lib/bridge.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djshdsh/ctxfold.git"
+  },
+  "homepage": "https://github.com/djshdsh/ctxfold#readme",
+  "bugs": {
+    "url": "https://github.com/djshdsh/ctxfold/issues"
+  },
+  "author": "djshdsh",
+  "keywords": [
+    "pi-agent",
+    "pi-coding-agent",
+    "prompt-injection",
+    "layers",
+    "skills",
+    "context",
+    "prompt-engineering",
+    "extension"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "os": [
+    "win32",
+    "linux",
+    "darwin"
+  ],
+  "files": [
+    "bin",
+    "gui",
+    "lib",
+    "patches",
+    "presets",
+    "skills",
+    "extension",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "setup": "node bin/ctxfold.js install",
+    "app": "node bin/ctxfold.js app",
+    "gui": "node bin/ctxfold.js gui",
+    "exe": "node scripts/build-exe.mjs",
+    "shell": "node scripts/build-shell.mjs",
+    "icon": "node scripts/make-icon.mjs",
+    "test": "node test/cli.test.mjs && node test/extension.test.mjs && node test/pi-load.test.mjs && node test/dist-patch.test.mjs && node test/gui.test.mjs && node test/sanitize.test.mjs",
+    "test:cli": "node test/cli.test.mjs",
+    "test:ext": "node test/extension.test.mjs",
+    "test:load": "node test/pi-load.test.mjs",
+    "test:dist": "node test/dist-patch.test.mjs",
+    "test:gui": "node test/gui.test.mjs",
+    "test:sanitize": "node test/sanitize.test.mjs",
+    "status": "node bin/ctxfold.js status",
+    "doctor": "node bin/ctxfold.js doctor"
+  },
+  "devDependencies": {
+    "jiti": "^2.4.2",
+    "postject": "^1.0.0-alpha.6"
+  }
+}

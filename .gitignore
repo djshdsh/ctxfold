@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+.sea-build/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# 运行时产物
+.ctxfold/
+*.ctxfold.bak

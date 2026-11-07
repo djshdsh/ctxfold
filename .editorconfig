@@ -1,0 +1,32 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.{md,markdown}]
+trim_trailing_whitespace = false
+max_line_length = off
+
+[*.{cs,csproj}]
+indent_size = 4
+
+[*.ps1]
+# Windows PowerShell 5.1 读无 BOM 的 UTF-8 会乱码，这类文件需要保留 BOM
+charset = utf-8-bom
+
+[*.{json,jsonc}]
+indent_size = 2
+
+[*.yml]
+indent_size = 2
+
+[*.{bat,cmd}]
+end_of_line = crlf
+
+[{Makefile,*.mk}]
+indent_style = tab

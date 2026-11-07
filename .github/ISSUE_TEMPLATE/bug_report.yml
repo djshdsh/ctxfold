@@ -1,0 +1,104 @@
+name: 报告问题
+description: 装了没用、行为不对、崩溃
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        先跑 `ctxfold doctor` 并把输出贴上来，很多问题它自己就说了。
+
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 你期望什么，实际什么。
+      placeholder: |
+        期望：`ctxfold apply` 之后 AGENTS.md 里有我写的正文 + ctxfold 区块
+        实际：正文被一起删掉了
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. ctxfold install
+        2. 在 AGENTS.md 写「# 我的笔记」
+        3. ctxfold sanitize
+        4. 打开 AGENTS.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: doctor
+    attributes:
+      label: ctxfold doctor 输出
+      description: 请贴完整输出，不要自己筛。
+      render: text
+      placeholder: |
+        ctxfold 环境自检
+          [ok] node          24.19.0
+          ...
+    validations:
+      required: true
+
+  - type: input
+    id: versions
+    attributes:
+      label: 版本
+      description: ctxfold、Pi Agent、Node 的版本各是多少。
+      placeholder: "ctxfold 1.2.1 / Pi 1.0.4 / Node 24.19.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: channel
+    attributes:
+      label: 用的哪个
+      options:
+        - 桌面程序 ctxfold-app.exe
+        - 网页控制台 ctxfold gui
+        - 命令行 ctxfold …
+        - Pi 里直接注入（没开壳）
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 系统
+      options:
+        - Windows 11
+        - Windows 10
+        - Linux
+        - macOS
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: config.json
+      description: 在 `<home>/extensions/ctxfold/config.json`。贴之前把看不了的内容去掉。
+      render: json
+      placeholder: |
+        {
+          "enabled": true,
+          "routing": true,
+          "maxChars": 0,
+          "approval": "auto",
+          "override": false
+        }
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我用的是最新版本
+          required: true
+        - label: 我搜过已有 issue，没有一样的
+          required: true
