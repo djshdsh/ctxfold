@@ -1,16 +1,30 @@
 <div align="center">
 
-<img src="assets/avatar.png" width="96" alt="ctxfold">
+<img src="assets/avatar.png" width="96" alt="AI 破甲 · ctxfold">
 
-# ctxfold
+# AI 破甲 · ctxfold
 
 **Pi Agent 的提示词控制台：分层注入、按任务裁剪、一键清洗、原生桌面壳。**
 
 不写配置、不改源码、不装依赖，双击就能把提示词体系装进 `~/.pi/agent`。
 
+### 💬 QQ 群 **1109964876** ｜ 🚀 中转破甲地址 **[hunmeng.icu](https://www.hunmeng.icu/)**
+
 </div>
 
 ![一键注入](assets/screenshots/inject.png)
+
+---
+
+## 先加群
+
+| 渠道 | 地址 |
+| --- | --- |
+| QQ 群 | **1109964876** |
+| 中转破甲地址 | **<https://www.hunmeng.icu/>** |
+
+装不上、跑不通、想要新层、想提需求，都进群说一声。
+中转地址是配套的接口服务，本项目本身不依赖它——纯本地运行，不需要任何账号或密钥。
 
 ---
 

@@ -1,6 +1,10 @@
-# ctxfold
+# AI 破甲 · ctxfold
 
 Layered prompt control for [Pi Agent](https://github.com/earendil-works/pi). Positive-only, zero runtime dependencies.
+
+> **QQ group: `1109964876`** · **Relay endpoint: <https://www.hunmeng.icu/>**
+>
+> The relay is an optional companion service. ctxfold itself runs fully local and needs no account or key.
 
 [中文](README.md) · [CLI reference](docs/CLI.md) · [Architecture](docs/ARCHITECTURE.md) · [Layers](docs/LAYERS.md)
 

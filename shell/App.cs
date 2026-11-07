@@ -686,7 +686,7 @@ namespace CtxFold
                 t.InvokeMember("IconLocation", BindingFlags.SetProperty, null, sc,
                     new object[] { Application.ExecutablePath + ",0" });
                 t.InvokeMember("Description", BindingFlags.SetProperty, null, sc,
-                    new object[] { "ctxfold 提示词控制台" });
+                    new object[] { "AI 破甲 · ctxfold 提示词控制台" });
                 t.InvokeMember("Save", BindingFlags.InvokeMethod, null, sc, null);
                 return true;
             }
@@ -730,7 +730,7 @@ namespace CtxFold
         public MainForm(string initialHome)
         {
             this.initialHome = initialHome == null ? "" : initialHome;
-            Text = "ctxfold 提示词控制台";
+            Text = "AI 破甲 · ctxfold 提示词控制台";
             BackColor = Ui.Bg;
             ForeColor = Ui.Text;
             Font = Ui.F(9.5f);
