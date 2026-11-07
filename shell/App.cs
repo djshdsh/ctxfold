@@ -700,6 +700,7 @@ namespace CtxFold
     internal sealed class MainForm : Form
     {
         private Panel content;
+        private Panel footer;
         private Panel tabBar;
         private Panel tabIndicator;
         private Panel[] pages;
@@ -743,6 +744,7 @@ namespace CtxFold
 
             BuildMenu();
             BuildBody();
+            BuildFooter();
             BuildStatus();
             Ui.StyleAll(this);
             // 停靠按 z-order 从外到内：让菜单条压在最外层，否则标签栏会盖住菜单
@@ -783,8 +785,9 @@ namespace CtxFold
             about.Click += delegate
             {
                 MessageBox.Show(this,
-                    "ctxfold 1.0\n\nPi Agent 提示词控制台\n注入 / 裁剪 / 清洗 / 接管，全部在本机完成。",
-                    "关于 ctxfold", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "AI 破甲 · ctxfold\n\nPi Agent 提示词控制台\n注入 / 裁剪 / 清洗 / 接管，全部在本机完成。\n\n"
+                    + "QQ 群：" + QQGroup + "\n中转破甲：" + RelayUrl,
+                    "关于 AI 破甲 · ctxfold", MessageBoxButtons.OK, MessageBoxIcon.Information);
             };
             help.DropDownItems.Add(about);
             menu.Items.Add(file);
@@ -860,6 +863,100 @@ namespace CtxFold
                 }
             }
             pages[index].BringToFront();
+        }
+
+        // ---------- 页脚：群与中转入口 ----------
+
+        private const string QQGroup = "1109964876";
+        private const string RelayUrl = "https://www.hunmeng.icu/";
+
+        private void BuildFooter()
+        {
+            footer = new Panel();
+            footer.Dock = DockStyle.Bottom;
+            footer.Height = 46;
+            footer.BackColor = Color.FromArgb(0xFF, 0xF6, 0xFA);
+
+            Label qq = Ui.Lab("QQ 群  " + QQGroup, Ui.FB(9.5f), Ui.AccentDeep);
+            qq.Left = 22;
+            qq.Top = 13;
+            qq.Width = 170;
+            qq.Height = 20;
+            qq.Cursor = Cursors.Hand;
+            qq.Click += delegate { CopyQQ(); };
+            footer.Controls.Add(qq);
+
+            Label relay = Ui.Lab("中转破甲  " + RelayUrl, Ui.FB(9.5f), Ui.Accent);
+            relay.Left = 194;
+            relay.Top = 13;
+            relay.Width = 320;
+            relay.Height = 20;
+            relay.Cursor = Cursors.Hand;
+            relay.Click += delegate { OpenUrl(RelayUrl); };
+            footer.Controls.Add(relay);
+
+            Label tip = Ui.Lab("点群号复制 · 点地址打开", Ui.F(8.5f), Ui.Muted);
+            tip.Left = 522;
+            tip.Top = 14;
+            tip.Width = 180;
+            tip.Height = 18;
+            footer.Controls.Add(tip);
+
+            footer.Paint += delegate(object s, PaintEventArgs e)
+            {
+                using (Pen p = new Pen(Ui.Border, 1f))
+                    e.Graphics.DrawLine(p, 0, 0, footer.Width, 0);
+            };
+
+            Button copy = Ui.Btn("复制群号", false);
+            copy.Width = 84;
+            copy.Height = 28;
+            copy.Top = 9;
+            copy.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            copy.Click += delegate { CopyQQ(); };
+            footer.Controls.Add(copy);
+
+            Button go = Ui.Btn("打开中转", true);
+            go.Width = 84;
+            go.Height = 28;
+            go.Top = 9;
+            go.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            go.Click += delegate { OpenUrl(RelayUrl); };
+            footer.Controls.Add(go);
+
+            footer.Resize += delegate
+            {
+                go.Left = footer.Width - go.Width - 18;
+                copy.Left = go.Left - copy.Width - 8;
+            };
+
+            Controls.Add(footer);
+        }
+
+        private void CopyQQ()
+        {
+            try
+            {
+                Clipboard.SetText(QQGroup);
+                labStatus.Text = "QQ 群号 " + QQGroup + " 已复制到剪贴板";
+            }
+            catch
+            {
+                labStatus.Text = "复制失败，手抄一下：" + QQGroup;
+            }
+        }
+
+        private void OpenUrl(string url)
+        {
+            try
+            {
+                Process.Start(url);
+                labStatus.Text = "已在浏览器打开 " + url;
+            }
+            catch (Exception ex)
+            {
+                labStatus.Text = "打不开链接：" + ex.Message;
+            }
         }
 
         private void BuildStatus()
