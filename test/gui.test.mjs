@@ -38,7 +38,11 @@ const base = `http://127.0.0.1:${srv.port}`;
 try {
   console.log("\n页面与鉴权");
   const html = await fetch(`${base}/`).then((r) => r.text());
-  check("首页返回 HTML", html.includes("<title>ctxfold"), html.slice(0, 40));
+  check(
+    "首页返回 HTML",
+    html.toLowerCase().startsWith("<!doctype html") && /<title>[^<]*一键注入[^<]*<\/title>/.test(html),
+    html.slice(0, 40),
+  );
   check("token 已注入页面", !html.includes("__CTXFOLD_TOKEN__"));
 
   const token = (html.match(/const TOKEN = "([a-f0-9]+)"/) || [])[1];
