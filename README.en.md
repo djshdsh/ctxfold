@@ -119,3 +119,4 @@ Node ≥ 18.17 for the CLI. Windows for the window (it compiles with the `csc` t
 ## License
 
 MIT
+<!-- docs: updated 2026-11-08 -->
